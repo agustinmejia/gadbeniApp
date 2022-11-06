@@ -1,6 +1,6 @@
 {
-    "name": "gadbeniapp",
-    "short_name": "gadbeniapp",
+    "name": "gadbeni",
+    "short_name": "gadbeni",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

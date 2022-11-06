@@ -1,4 +1,4 @@
-name: gadbeniapp
+name: gadbeni
 description: Gobierno Autónomo Departamental del Beni
 
 # The following line prevents the package from being accidentally published to
@@ -62,8 +62,25 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/img/icon-alt.png
+    #####################
     - assets/img/services/turismo.jpg
     - assets/img/services/servicios.jpg
+    - assets/img/services/cultura.jpg
+    - assets/img/services/denuncias.jpg
+    - assets/img/services/contacto.jpg
+    #####################
+    - assets/img/places/chuchini.jpg
+    - assets/img/places/loma-suarez.jpg
+    - assets/img/places/laguna-suarez.jpg
+    - assets/img/places/itauba.jpeg
+    - assets/img/places/tomichucua.jpeg
+    #####################
+    - assets/img/banner-1.png
+    #####################
+    - assets/img/services/services_list/beca.jpg
+    - assets/img/services/services_list/donacion.jpg
+    - assets/img/services/services_list/personeria.jpg
+    - assets/img/services/services_list/salud.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -79,7 +96,7 @@ flutter:
   fonts:
     - family: Monstserrat
       fonts:
-        - asset: assets/fonts/Monstserrat-Regular.ttf
+        - asset: assets/fonts/Montserrat-Regular.ttf
         # - asset: fonts/Schyler-Italic.ttf
           style: normal
   #   - family: Trajan Pro

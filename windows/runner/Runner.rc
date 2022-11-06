@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.ideacreativa.gadbeni" "\0"
-            VALUE "FileDescription", "gadbeniapp" "\0"
+            VALUE "FileDescription", "gadbeni" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "gadbeniapp" "\0"
+            VALUE "InternalName", "gadbeni" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.ideacreativa.gadbeni. All rights reserved." "\0"
-            VALUE "OriginalFilename", "gadbeniapp.exe" "\0"
-            VALUE "ProductName", "gadbeniapp" "\0"
+            VALUE "OriginalFilename", "gadbeni.exe" "\0"
+            VALUE "ProductName", "gadbeni" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

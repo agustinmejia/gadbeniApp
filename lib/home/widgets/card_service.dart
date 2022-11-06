@@ -9,7 +9,7 @@ class CardService extends StatelessWidget {
     final card = Container(
       height: 150,
       width: 230,
-      margin: const EdgeInsets.only(top: 10, left: 20),
+      margin: const EdgeInsets.only(top: 10, left: 20, bottom: 10),
       decoration: BoxDecoration(
           image:
               DecorationImage(fit: BoxFit.cover, image: AssetImage(pathImage)),
@@ -22,7 +22,7 @@ class CardService extends StatelessWidget {
     );
 
     return Stack(
-      alignment: const Alignment(-0.6, 0.8),
+      alignment: const Alignment(-0.6, 0.6),
       children: <Widget>[
         card,
         Container(

@@ -1,4 +1,4 @@
-# gadbeniapp
+# gadbeni
 
 Gobierno Autónomo Departamental del Beni
 

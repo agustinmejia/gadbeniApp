@@ -1,4 +1,4 @@
-package com.ideacreativa.gadbeni.gadbeniapp
+package com.ideacreativa.gadbeni
 
 import io.flutter.embedding.android.FlutterActivity
 
