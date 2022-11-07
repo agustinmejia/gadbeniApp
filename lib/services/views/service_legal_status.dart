@@ -17,7 +17,7 @@ class ServiceLegalStatus extends StatelessWidget {
               "assets/img/services/services_list/personeria.jpg"),
           ListView(
             children: <Widget>[
-              DescriptionService("Personería jurídica", 4, descriptionDummy),
+              DescriptionService("Personería jurídica", descriptionDummy),
             ],
           ),
         ],
@@ -28,10 +28,9 @@ class ServiceLegalStatus extends StatelessWidget {
 
 class DescriptionService extends StatelessWidget {
   String namePlace;
-  int stars;
   String descriptionPlace;
 
-  DescriptionService(this.namePlace, this.stars, this.descriptionPlace);
+  DescriptionService(this.namePlace, this.descriptionPlace);
 
   @override
   Widget build(BuildContext context) {

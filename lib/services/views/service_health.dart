@@ -16,8 +16,7 @@ class ServiceHealt extends StatelessWidget {
           BackgroundImageTop("assets/img/services/services_list/salud.jpg"),
           ListView(
             children: <Widget>[
-              DescriptionService(
-                  "Atención médica en línea", 4, descriptionDummy),
+              DescriptionService("Atención médica en línea", descriptionDummy),
             ],
           ),
         ],
@@ -28,10 +27,9 @@ class ServiceHealt extends StatelessWidget {
 
 class DescriptionService extends StatelessWidget {
   String namePlace;
-  int stars;
   String descriptionPlace;
 
-  DescriptionService(this.namePlace, this.stars, this.descriptionPlace);
+  DescriptionService(this.namePlace, this.descriptionPlace);
 
   @override
   Widget build(BuildContext context) {

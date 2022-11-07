@@ -31,7 +31,7 @@ class CardHorizontal extends StatelessWidget {
           decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(pathImage),
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
               shape: BoxShape.rectangle,
               borderRadius: const BorderRadius.only(

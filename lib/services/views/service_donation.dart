@@ -16,7 +16,7 @@ class ServiceDonation extends StatelessWidget {
           BackgroundImageTop("assets/img/services/services_list/donacion.jpg"),
           ListView(
             children: <Widget>[
-              DescriptionService("Solicitar donación", 4, descriptionDummy),
+              DescriptionService("Solicitar donación", descriptionDummy),
             ],
           ),
         ],
@@ -27,10 +27,9 @@ class ServiceDonation extends StatelessWidget {
 
 class DescriptionService extends StatelessWidget {
   String namePlace;
-  int stars;
   String descriptionPlace;
 
-  DescriptionService(this.namePlace, this.stars, this.descriptionPlace);
+  DescriptionService(this.namePlace, this.descriptionPlace);
 
   @override
   Widget build(BuildContext context) {

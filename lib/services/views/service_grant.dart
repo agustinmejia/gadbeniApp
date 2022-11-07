@@ -16,7 +16,7 @@ class ServiceGrant extends StatelessWidget {
           BackgroundImageTop("assets/img/services/services_list/beca.jpg"),
           ListView(
             children: <Widget>[
-              DescriptionService("Obtar por beca", 4, descriptionDummy),
+              DescriptionService("Obtar por beca", descriptionDummy),
             ],
           ),
         ],
@@ -27,10 +27,9 @@ class ServiceGrant extends StatelessWidget {
 
 class DescriptionService extends StatelessWidget {
   String namePlace;
-  int stars;
   String descriptionPlace;
 
-  DescriptionService(this.namePlace, this.stars, this.descriptionPlace);
+  DescriptionService(this.namePlace, this.descriptionPlace);
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // Widgets
 import 'package:gadbeni/widgets/clipper08.dart';
 import 'package:gadbeni/home/widgets/card_services_list.dart';
-import 'package:gadbeni/home/widgets/card_news_list.dart';
+import 'package:gadbeni/home/widgets/card_blog_list.dart';
 import 'package:gadbeni/home/widgets/card_places_list.dart';
 
 import 'package:gadbeni/widgets/banner_advertising.dart';
@@ -52,7 +52,7 @@ class Home extends StatelessWidget {
                     ),
                   ),
                   CardServicesList(),
-                  CardNewsList(),
+                  CardBlogList(),
                   CardPlacesList("Lugares Turístico"),
                   BannerAdvertising()
                 ],
