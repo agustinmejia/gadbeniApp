@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // Widgets
 import 'package:gadbeni/widgets/background_image_network_top.dart';
 import 'package:gadbeni/widgets/description_view.dart';
+import 'package:gadbeni/widgets/viewer_photos.dart';
 import 'package:gadbeni/widgets/thumbnail_network.dart';
 
 // Widgets externals
@@ -23,6 +24,7 @@ class PlaceDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final latLng = json.decode(coordinates)['coordinates'];
     return Container(
       color: Colors.white,
       child: Stack(
@@ -35,7 +37,8 @@ class PlaceDetails extends StatelessWidget {
               const SizedBox(height: 30),
               Container(
                 height: 300,
-                child: MapSample(),
+                child: MapSample(
+                    title: title, latitude: latLng[1], longitude: latLng[0]),
               )
             ],
           ),
@@ -78,7 +81,17 @@ class PhotosListHorizontal extends StatelessWidget {
                     itemCount: photosList.length,
                     itemBuilder: (BuildContext context, int index) {
                       var banner = photosList[index];
-                      return ThumbnailNetwork("$_URL/storage/$banner");
+                      return Material(
+                        child: InkWell(
+                          onTap: () {
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => ViewerPhotos()));
+                          },
+                          child: ThumbnailNetwork("$_URL/storage/$banner"),
+                        ),
+                      );
                     }),
               ),
             ],
@@ -90,6 +103,15 @@ class PhotosListHorizontal extends StatelessWidget {
 }
 
 class MapSample extends StatefulWidget {
+  String title = '';
+  double latitude;
+  double longitude;
+  MapSample(
+      {Key? key,
+      required this.title,
+      required this.latitude,
+      required this.longitude})
+      : super(key: key);
   @override
   State<MapSample> createState() => _MapSample();
 }
@@ -108,12 +130,12 @@ class _MapSample extends State<MapSample> {
 
     markers.add(Marker(
       //add second marker
-      markerId: MarkerId("1234"),
-      position: LatLng(-14.8350689, -64.9072383), //position of marker
+      markerId: MarkerId(widget.title),
+      position: LatLng(widget.latitude, widget.longitude), //position of marker
       infoWindow: InfoWindow(
         //popup info
-        title: "Title",
-        snippet: 'My Custom Subtitle',
+        title: widget.title,
+        // snippet: 'My Custom Subtitle',
       ),
       icon: BitmapDescriptor.defaultMarker, //Icon for Marker
     ));
@@ -123,6 +145,10 @@ class _MapSample extends State<MapSample> {
       initialCameraPosition: _kGooglePlex,
       onMapCreated: (GoogleMapController controller) {
         _controller.complete(controller);
+        controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+          target: LatLng(widget.latitude, widget.longitude),
+          zoom: 14.4746,
+        )));
       },
       markers: markers,
     ));

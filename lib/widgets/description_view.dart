@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+double? width;
+double? height;
+
 class DescriptionView extends StatelessWidget {
   String title;
   String description;
@@ -8,6 +11,8 @@ class DescriptionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.shortestSide;
+    height = MediaQuery.of(context).size.longestSide;
     return Column(
       children: [
         const SizedBox(height: 220),
@@ -17,23 +22,25 @@ class DescriptionView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Container(
-                    margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: Text(
-                      title,
-                      style: const TextStyle(
-                        decoration: TextDecoration.none,
-                        fontFamily: "Montserrat",
-                        fontSize: 25.0,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                      textAlign: TextAlign.left,
+              Container(
+                padding: EdgeInsets.only(left: 20, right: 20),
+                child: SizedBox(
+                  width: (width! - 20),
+                  child: Text(
+                    title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    style: const TextStyle(
+                      decoration: TextDecoration.none,
+                      fontFamily: "Montserrat",
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
                     ),
+                    textAlign: TextAlign.left,
                   ),
-                ],
+                ),
               ),
               Container(
                 margin:

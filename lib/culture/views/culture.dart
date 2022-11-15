@@ -9,8 +9,8 @@ class Culture extends StatelessWidget {
         appBar: AppBar(
           title: Text("Nuestra cultura"),
         ),
-        body: ListView(children: [
-          CardCultureList(),
-        ]));
+        body: Container(
+          child: CardCultureList(),
+        ));
   }
 }
