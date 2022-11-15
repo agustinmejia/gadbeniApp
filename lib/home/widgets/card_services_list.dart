@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+
+// Views
+import 'package:gadbeni/complaint/views/complaint.dart';
+import 'package:gadbeni/culture/views/culture.dart';
 import 'package:gadbeni/services/views/services.dart';
 import 'package:gadbeni/tourism/views/tourism.dart';
 
@@ -34,8 +38,21 @@ class CardServicesList extends StatelessWidget {
             },
             child: CardService("Turismo", "assets/img/services/turismo.jpg"),
           ),
-          CardService("Cultura", "assets/img/services/cultura.jpg"),
-          CardService("Denuncias", "assets/img/services/denuncias.jpg"),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Culture()));
+            },
+            child: CardService("Cultura", "assets/img/services/cultura.jpg"),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Complaint()));
+            },
+            child:
+                CardService("Denuncias", "assets/img/services/denuncias.jpg"),
+          ),
           CardService("Contacto", "assets/img/services/contacto.jpg")
         ],
       ),

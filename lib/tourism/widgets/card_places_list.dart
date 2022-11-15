@@ -1,85 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:async';
 
 // Widgets
 import 'package:gadbeni/tourism/views/place_details.dart';
 
 // Widgets
-import 'package:gadbeni/widgets/card_horizontal.dart';
+import 'package:gadbeni/widgets/card_horizontal_network.dart';
 
-class CardPlacesList extends StatelessWidget {
+const _URL = 'https://mamore.beni.gob.bo';
+
+class CardPlacesList extends StatefulWidget {
+  @override
+  State<CardPlacesList> createState() => _CardPlacesListState();
+}
+
+class _CardPlacesListState extends State<CardPlacesList> {
+  List placesList = [];
+  bool isLoading = true;
+
+  Future getPlaces() async {
+    var baseUrl = "$_URL/api/places";
+    http.Response response = await http.get(Uri.parse(baseUrl));
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      setState(() => {placesList = jsonData['places']});
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getPlaces();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(top: 30),
-      child: Column(
-        children: [
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PlaceDetails("Laguna Suarez",
-                          "assets/img/places/loma-suarez.jpg")));
-            },
-            child: CardHorizontal(
-                "Loma Suarez",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                "assets/img/places/loma-suarez.jpg"),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PlaceDetails("Laguna Suarez",
-                          "assets/img/places/laguna-suarez.jpg")));
-            },
-            child: CardHorizontal(
-                "Laguna Suarez",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                "assets/img/places/laguna-suarez.jpg"),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PlaceDetails(
-                          "Tomichucua", "assets/img/places/tomichucua.jpeg")));
-            },
-            child: CardHorizontal(
-                "Tomichucua",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                "assets/img/places/tomichucua.jpeg"),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PlaceDetails("Itauba Eco-Resort",
-                          "assets/img/places/itauba.jpeg")));
-            },
-            child: CardHorizontal(
-                "Itauba Eco-Resort",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                "assets/img/places/itauba.jpeg"),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PlaceDetails(
-                          "Chuchini", "assets/img/places/chuchini.jpg")));
-            },
-            child: CardHorizontal(
-                "Chuchini",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                "assets/img/places/chuchini.jpg"),
+    return isLoading
+        ? Center(
+            child: CircularProgressIndicator(),
           )
-        ],
-      ),
-    );
+        : Container(
+            padding: const EdgeInsets.only(top: 30),
+            child: ListView.builder(
+                itemCount: placesList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  var banner = placesList[index]['banner'];
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PlaceDetails(
+                                    placesList[index]['title'],
+                                    placesList[index]['description'],
+                                    "$_URL/storage/$banner",
+                                    placesList[index]['gallery'] != null
+                                        ? placesList[index]['gallery']
+                                        : "[]",
+                                    placesList[index]['location'],
+                                  )));
+                    },
+                    child: CardHorizontalNetwork(placesList[index]['title'],
+                        placesList[index]['subtitle'], "$_URL/storage/$banner"),
+                  );
+                }));
   }
 }

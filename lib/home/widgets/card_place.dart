@@ -12,8 +12,8 @@ class CardPlace extends StatelessWidget {
       width: 250,
       margin: const EdgeInsets.only(top: 10, left: 20, bottom: 10),
       decoration: BoxDecoration(
-          image:
-              DecorationImage(fit: BoxFit.cover, image: AssetImage(pathImage)),
+          image: DecorationImage(
+              fit: BoxFit.cover, image: NetworkImage(pathImage)),
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           shape: BoxShape.rectangle,
           boxShadow: const <BoxShadow>[

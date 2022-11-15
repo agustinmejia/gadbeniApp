@@ -93,7 +93,7 @@ class DescriptionService extends StatelessWidget {
 
     return Column(
       children: [
-        const SizedBox(height: 200),
+        const SizedBox(height: 220),
         Container(
           color: Colors.white,
           padding: const EdgeInsets.only(top: 20),

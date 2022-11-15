@@ -17,11 +17,11 @@ class CardServicesList extends StatelessWidget {
           InkWell(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ServiceHealt()));
+                  MaterialPageRoute(builder: (context) => ServiceHealth()));
             },
             child: CardHorizontal(
                 "Atención médica en línea",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                "El Gobierno autónomo del Beni, implementando el servicio de fichaje en línea, un servicio que permitirá al paciente recabar su ficha de atención médica en línea desde su dispositivo móvil en la comodidad de su hogar.",
                 "assets/img/services/services_list/salud.jpg"),
           ),
           InkWell(

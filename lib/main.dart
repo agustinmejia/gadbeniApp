@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
+      debugShowCheckedModeBanner: false,
       home: Home(),
     );
   }

@@ -1,18 +1,25 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 
 // Widgets
-import 'package:gadbeni/widgets/background_image_top.dart';
+import 'package:gadbeni/widgets/background_image_network_top.dart';
+import 'package:gadbeni/widgets/description_view.dart';
+import 'package:gadbeni/widgets/thumbnail_network.dart';
 
 // Widgets externals
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+const _URL = 'https://mamore.beni.gob.bo';
+
 class PlaceDetails extends StatelessWidget {
   String title = "";
-  String descriptionDummy =
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. \n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
+  String description = "";
+  String coordinates = "";
   String pathImage = "";
-  PlaceDetails(this.title, this.pathImage);
+  String gallery = "";
+  PlaceDetails(this.title, this.description, this.pathImage, this.gallery,
+      this.coordinates);
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +27,16 @@ class PlaceDetails extends StatelessWidget {
       color: Colors.white,
       child: Stack(
         children: <Widget>[
-          BackgroundImageTop(pathImage),
+          BackgroundImageNetworkTop(pathImage),
           ListView(
             children: <Widget>[
-              DescriptionService(title, descriptionDummy),
-              PhotosListHorizontal()
+              DescriptionView(title, description),
+              PhotosListHorizontal(gallery),
+              const SizedBox(height: 30),
+              Container(
+                height: 300,
+                child: MapSample(),
+              )
             ],
           ),
         ],
@@ -33,65 +45,12 @@ class PlaceDetails extends StatelessWidget {
   }
 }
 
-class DescriptionService extends StatelessWidget {
-  String namePlace;
-  String descriptionPlace;
-
-  DescriptionService(this.namePlace, this.descriptionPlace);
-
-  @override
-  Widget build(BuildContext context) {
-    final titleStars = Row(
-      children: <Widget>[
-        Container(
-          margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-          child: Text(
-            namePlace,
-            style: const TextStyle(
-              decoration: TextDecoration.none,
-              fontFamily: "Montserrat",
-              fontSize: 25.0,
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
-            ),
-            textAlign: TextAlign.left,
-          ),
-        ),
-      ],
-    );
-
-    final description = Container(
-      margin: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
-      child: Text(
-        descriptionPlace,
-        style: const TextStyle(
-            decoration: TextDecoration.none,
-            fontFamily: "Montserrat",
-            fontSize: 16.0,
-            fontWeight: FontWeight.normal,
-            color: Color(0xFF56575a)),
-      ),
-    );
-
-    return Column(
-      children: [
-        const SizedBox(height: 200),
-        Container(
-          color: Colors.white,
-          padding: const EdgeInsets.only(top: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[titleStars, description],
-          ),
-        )
-      ],
-    );
-  }
-}
-
 class PhotosListHorizontal extends StatelessWidget {
+  String string_gallery = "";
+  PhotosListHorizontal(this.string_gallery);
   @override
   Widget build(BuildContext context) {
+    List photosList = json.decode(string_gallery);
     return Column(
       children: [
         Container(
@@ -113,60 +72,29 @@ class PhotosListHorizontal extends StatelessWidget {
               const SizedBox(height: 10),
               Container(
                 height: 100,
-                child: ListView(
-                  padding: const EdgeInsets.all(5),
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    Thumbnail("assets/img/places/chuchini.jpg"),
-                    Thumbnail("assets/img/places/laguna-suarez.jpg"),
-                    Thumbnail("assets/img/places/itauba.jpeg"),
-                    Thumbnail("assets/img/places/loma-suarez.jpg"),
-                  ],
-                ),
+                child: ListView.builder(
+                    padding: const EdgeInsets.all(5),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: photosList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      var banner = photosList[index];
+                      return ThumbnailNetwork("$_URL/storage/$banner");
+                    }),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 30),
-        Container(
-          height: 300,
-          child: MapSample(),
-        )
       ],
-    );
-  }
-}
-
-class Thumbnail extends StatelessWidget {
-  String pathImage = "";
-  Thumbnail(this.pathImage);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100.0,
-      width: 150.0,
-      margin: EdgeInsets.only(left: 3),
-      decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(pathImage),
-            fit: BoxFit.cover,
-          ),
-          shape: BoxShape.rectangle,
-          borderRadius: const BorderRadius.all(Radius.circular(3)),
-          boxShadow: const <BoxShadow>[
-            BoxShadow(
-                color: Colors.black26, blurRadius: 5, offset: Offset(1, 5))
-          ]),
     );
   }
 }
 
 class MapSample extends StatefulWidget {
   @override
-  State<MapSample> createState() => RenderMap();
+  State<MapSample> createState() => _MapSample();
 }
 
-class RenderMap extends State<MapSample> {
+class _MapSample extends State<MapSample> {
   Completer<GoogleMapController> _controller = Completer();
 
   static final CameraPosition _kGooglePlex = CameraPosition(
@@ -184,7 +112,7 @@ class RenderMap extends State<MapSample> {
       position: LatLng(-14.8350689, -64.9072383), //position of marker
       infoWindow: InfoWindow(
         //popup info
-        title: 'My Custom Title ',
+        title: "Title",
         snippet: 'My Custom Subtitle',
       ),
       icon: BitmapDescriptor.defaultMarker, //Icon for Marker

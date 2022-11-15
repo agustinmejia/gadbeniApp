@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // Widgets
 import 'package:gadbeni/widgets/background_image_top.dart';
+import 'package:gadbeni/widgets/description_view.dart';
 
 class ServiceGrant extends StatelessWidget {
   String descriptionDummy =
@@ -16,67 +17,24 @@ class ServiceGrant extends StatelessWidget {
           BackgroundImageTop("assets/img/services/services_list/beca.jpg"),
           ListView(
             children: <Widget>[
-              DescriptionService("Obtar por beca", descriptionDummy),
+              DescriptionView("Obtar por beca", descriptionDummy),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: ElevatedButton(
+                  // style: style,
+                  onPressed: () {
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => FormServiceHealth()));
+                  },
+                  child: const Text('Solicitar beca'),
+                ),
+              )
             ],
           ),
         ],
       ),
-    );
-  }
-}
-
-class DescriptionService extends StatelessWidget {
-  String namePlace;
-  String descriptionPlace;
-
-  DescriptionService(this.namePlace, this.descriptionPlace);
-
-  @override
-  Widget build(BuildContext context) {
-    final titleStars = Row(
-      children: <Widget>[
-        Container(
-          margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-          child: Text(
-            namePlace,
-            style: const TextStyle(
-              decoration: TextDecoration.none,
-              fontFamily: "Montserrat",
-              fontSize: 25.0,
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
-            ),
-            textAlign: TextAlign.left,
-          ),
-        ),
-      ],
-    );
-
-    final description = Container(
-      margin: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
-      child: Text(
-        descriptionPlace,
-        style: const TextStyle(
-            decoration: TextDecoration.none,
-            fontFamily: "Montserrat",
-            fontSize: 16.0,
-            fontWeight: FontWeight.normal,
-            color: Color(0xFF56575a)),
-      ),
-    );
-
-    return Column(
-      children: [
-        const SizedBox(height: 200),
-        Container(
-          color: Colors.white,
-          padding: const EdgeInsets.only(top: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[titleStars, description],
-          ),
-        )
-      ],
     );
   }
 }

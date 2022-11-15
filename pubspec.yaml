@@ -38,6 +38,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_native_splash: ^2.2.13
   google_maps_flutter: ^2.2.1
+  photo_view: ^0.14.0
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
@@ -71,11 +73,11 @@ flutter:
     - assets/img/services/denuncias.jpg
     - assets/img/services/contacto.jpg
     #####################
-    - assets/img/places/chuchini.jpg
-    - assets/img/places/loma-suarez.jpg
-    - assets/img/places/laguna-suarez.jpg
-    - assets/img/places/itauba.jpeg
-    - assets/img/places/tomichucua.jpeg
+    # - assets/img/places/chuchini.jpg
+    # - assets/img/places/loma-suarez.jpg
+    # - assets/img/places/laguna-suarez.jpg
+    # - assets/img/places/itauba.jpeg
+    # - assets/img/places/tomichucua.jpeg
     #####################
     - assets/img/banner-1.png
     #####################
@@ -83,6 +85,11 @@ flutter:
     - assets/img/services/services_list/donacion.jpg
     - assets/img/services/services_list/personeria.jpg
     - assets/img/services/services_list/salud.jpg
+    #####################
+    - assets/img/culture/judas.jpg
+    - assets/img/culture/macheteros.jpg
+    - assets/img/culture/tobas.jpg
+    - assets/img/culture/achus.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

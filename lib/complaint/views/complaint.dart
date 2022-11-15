@@ -7,11 +7,11 @@ import 'dart:async';
 import 'package:gadbeni/widgets/background_image_top.dart';
 import 'package:gadbeni/widgets/description_view.dart';
 
-const _URL = 'https://fichaje.beni.gob.bo';
+const _URL = 'https://transparencia.beni.gob.bo';
 
-class ServiceHealth extends StatelessWidget {
+class Complaint extends StatelessWidget {
   String descriptionDummy =
-      "El Gobierno autónomo del Beni, implementando el servicio de fichaje en línea, un servicio que permitirá al paciente recabar su ficha de atención médica en línea desde su dispositivo móvil en la comodidad de su hogar.";
+      "La Secretaria de Transparencia y lucha contra la corrupción es la instancia responsable de gestionar las denuncias por actos de corrupción y llevar adelante las políticas de transparencia y lucha contra la corrupción, de acuerdo a lo establecido en la Ley 974, de 4 de septiembre 2017.";
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +19,10 @@ class ServiceHealth extends StatelessWidget {
       color: Colors.white,
       child: Stack(
         children: <Widget>[
-          BackgroundImageTop("assets/img/services/services_list/salud.jpg"),
+          BackgroundImageTop("assets/img/services/denuncias.jpg"),
           ListView(
             children: <Widget>[
-              DescriptionView("Atención médica en línea", descriptionDummy),
+              DescriptionView("Denuncia cuidadana", descriptionDummy),
               Container(
                 padding: EdgeInsets.all(20),
                 child: ElevatedButton(
@@ -31,9 +31,9 @@ class ServiceHealth extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => FormServiceHealth()));
+                            builder: (context) => FormComplaint()));
                   },
-                  child: const Text('Solicitar atención médica'),
+                  child: const Text('Realizar denuncia'),
                 ),
               )
             ],
@@ -44,50 +44,39 @@ class ServiceHealth extends StatelessWidget {
   }
 }
 
-class FormServiceHealth extends StatefulWidget {
+class FormComplaint extends StatefulWidget {
   @override
-  State<FormServiceHealth> createState() => _FormServiceHealthState();
+  State<FormComplaint> createState() => _FormComplaint();
 }
 
-class _FormServiceHealthState extends State<FormServiceHealth> {
+class _FormComplaint extends State<FormComplaint> {
   String fullName = "";
   String dni = "";
   String phone = "";
+  String denounced = "";
   String details = "";
-  var doctorId;
   bool isFormSending = false;
 
   final formKey = GlobalKey<FormState>();
-
-  List doctorsList = [];
-
-  Future getDoctors() async {
-    var baseUrl = "$_URL/api/medicos";
-    http.Response response = await http.get(Uri.parse(baseUrl));
-    if (response.statusCode == 200) {
-      var jsonData = json.decode(response.body);
-      setState(() => {doctorsList = jsonData['medicos']});
-    }
-  }
 
   void saveRegister() async {
     setState(() {
       isFormSending = true;
     });
-    var baseUrl = "$_URL/api/citas/store";
+    var baseUrl = "$_URL/api/denuncias/store";
     http.Response response = await http.post(Uri.parse(baseUrl), body: {
       'nombre_completo': fullName,
       'ci': dni,
-      'celular': phone,
-      'doctor_id': doctorId,
-      'descripcion': details
+      'telefono': phone,
+      'denunciado': denounced,
+      'delito': details
     });
 
     if (response.statusCode == 200) {
       var jsonData = json.decode(response.body);
       if (jsonData['success'] == 1) {
         final snackBar = SnackBar(
-          content: Text('Cita médica solicitada!'),
+          content: Text('Denuncia registrada exitosamente!'),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         formKey.currentState!.reset();
@@ -101,7 +90,6 @@ class _FormServiceHealthState extends State<FormServiceHealth> {
   @override
   void initState() {
     super.initState();
-    getDoctors();
   }
 
   @override
@@ -120,7 +108,7 @@ class _FormServiceHealthState extends State<FormServiceHealth> {
                         Container(
                           padding: EdgeInsets.only(bottom: 20),
                           child: const Text(
-                            'Ingrese los datos para su atención',
+                            'Ingrese los datos de su denuncia',
                             style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 18,
@@ -138,7 +126,7 @@ class _FormServiceHealthState extends State<FormServiceHealth> {
                               decoration: const InputDecoration(
                                 icon: Icon(Icons.person),
                                 hintText: 'Juan Perez Perez',
-                                labelText: 'Nombre completo *',
+                                labelText: 'Su nombre completo *',
                               ),
                               onSaved: (newValue) {
                                 fullName = newValue!;
@@ -159,7 +147,7 @@ class _FormServiceHealthState extends State<FormServiceHealth> {
                               decoration: const InputDecoration(
                                 icon: Icon(Icons.web),
                                 hintText: '12345678',
-                                labelText: 'Cédula de Identidad *',
+                                labelText: 'Su cédula de Identidad *',
                               ),
                               onSaved: (newValue) {
                                 dni = newValue!;
@@ -181,7 +169,7 @@ class _FormServiceHealthState extends State<FormServiceHealth> {
                               decoration: const InputDecoration(
                                 icon: Icon(Icons.phone_android_outlined),
                                 hintText: '75199157',
-                                labelText: 'N° de celular *',
+                                labelText: 'Su N° de celular *',
                               ),
                               onSaved: (newValue) {
                                 phone = newValue!;
@@ -195,34 +183,25 @@ class _FormServiceHealthState extends State<FormServiceHealth> {
                           ),
                         ),
                         Container(
-                          alignment: Alignment.topLeft,
                           padding: EdgeInsets.only(bottom: 10),
                           child: Material(
                             color: Colors.white,
-                            child: DropdownButtonFormField(
-                              hint: Text('Seleccione al médico'),
+                            child: TextFormField(
+                              keyboardType: TextInputType.multiline,
+                              maxLines: 2,
                               decoration: const InputDecoration(
-                                icon: Icon(Icons.medical_services_outlined),
-                                labelText: 'Médico',
+                                icon: Icon(Icons.people_alt),
+                                // hintText: 'Persona o entidad denunciada',
+                                labelText: 'Persona o entidad denunciada *',
                               ),
-                              items: doctorsList.map((item) {
-                                return DropdownMenuItem(
-                                  value: item['id'].toString(),
-                                  child:
-                                      Text(item['nombre_completo'].toString()),
-                                );
-                              }).toList(),
-                              onChanged: (newVal) {
-                                setState(() {
-                                  doctorId = newVal.toString();
-                                });
+                              onSaved: (newValue) {
+                                denounced = newValue!;
                               },
-                              validator: (value) {
-                                if (value == null) {
-                                  return "Debe seleccionar un médico";
+                              validator: (String? value) {
+                                if (value == "") {
+                                  return "Debe ingresar a la persona o entidad denunciada";
                                 }
                               },
-                              value: doctorId,
                             ),
                           ),
                         ),
@@ -235,15 +214,15 @@ class _FormServiceHealthState extends State<FormServiceHealth> {
                               maxLines: 3,
                               decoration: const InputDecoration(
                                 icon: Icon(Icons.edit_note_sharp),
-                                hintText: 'Dolor de...',
-                                labelText: 'Motivo de la consulta *',
+                                // hintText: 'Dolor de...',
+                                labelText: 'Motivo de la denuncia *',
                               ),
                               onSaved: (newValue) {
                                 details = newValue!;
                               },
                               validator: (String? value) {
                                 if (value == "") {
-                                  return "Debe ingresar el motivo de la consulta";
+                                  return "Debe describir el motivo de la denuncia";
                                 }
                               },
                             ),
@@ -266,7 +245,7 @@ class _FormServiceHealthState extends State<FormServiceHealth> {
                                       saveRegister();
                                     }
                                   },
-                            child: const Text('Solicitar cita médica ahora'),
+                            child: const Text('Envia denuncia ahora'),
                           ),
                         )
                       ],

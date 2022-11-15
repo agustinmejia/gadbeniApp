@@ -9,8 +9,6 @@ class Tourism extends StatelessWidget {
         appBar: AppBar(
           title: Text("Lugares turísticos"),
         ),
-        body: ListView(children: [
-          CardPlacesList(),
-        ]));
+        body: Container(child: CardPlacesList()));
   }
 }
