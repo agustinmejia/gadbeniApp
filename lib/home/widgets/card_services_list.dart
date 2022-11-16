@@ -20,11 +20,6 @@ class CardServicesList extends StatelessWidget {
         children: <Widget>[
           InkWell(
             onTap: () {
-              // ScaffoldMessenger.of(context).showSnackBar(
-              //   SnackBar(
-              //     content: Text("Servicios"),
-              //   ),
-              // );
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Services()));
             },

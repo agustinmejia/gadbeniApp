@@ -6,6 +6,7 @@ import 'dart:async';
 // Widgets
 import 'package:gadbeni/widgets/background_image_top.dart';
 import 'package:gadbeni/widgets/description_view.dart';
+import 'package:gadbeni/widgets/snackbar_custom.dart';
 
 const _URL = 'https://transparencia.beni.gob.bo';
 
@@ -75,12 +76,22 @@ class _FormComplaint extends State<FormComplaint> {
     if (response.statusCode == 200) {
       var jsonData = json.decode(response.body);
       if (jsonData['success'] == 1) {
-        final snackBar = SnackBar(
-          content: Text('Denuncia registrada exitosamente!'),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: SnackBarCustom(Icons.check_circle_outline_outlined,
+                "Bien hecho!", "Denuncia enviada correctamente."),
+            backgroundColor: Colors.green));
         formKey.currentState!.reset();
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: SnackBarCustom(
+                Icons.error_outline, "Error!", "La denuncia no se registró."),
+            backgroundColor: Colors.red));
       }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: SnackBarCustom(
+              Icons.error_outline, "Error!", "Error en el servidor."),
+          backgroundColor: Colors.red));
     }
     setState(() {
       isFormSending = false;

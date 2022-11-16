@@ -6,6 +6,7 @@ import 'dart:async';
 // Widgets
 import 'package:gadbeni/widgets/background_image_top.dart';
 import 'package:gadbeni/widgets/description_view.dart';
+import 'package:gadbeni/widgets/snackbar_custom.dart';
 
 const _URL = 'https://fichaje.beni.gob.bo';
 
@@ -86,12 +87,22 @@ class _FormServiceHealthState extends State<FormServiceHealth> {
     if (response.statusCode == 200) {
       var jsonData = json.decode(response.body);
       if (jsonData['success'] == 1) {
-        final snackBar = SnackBar(
-          content: Text('Cita médica solicitada!'),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: SnackBarCustom(Icons.check_circle_outline_outlined,
+                "Bien hecho!", "Cita médica solicitada correctamente."),
+            backgroundColor: Colors.green));
         formKey.currentState!.reset();
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: SnackBarCustom(Icons.error_outline, "Error!",
+                "La cita médica no se registró."),
+            backgroundColor: Colors.red));
       }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: SnackBarCustom(
+              Icons.error_outline, "Error!", "Error en el servidor."),
+          backgroundColor: Colors.red));
     }
     setState(() {
       isFormSending = false;

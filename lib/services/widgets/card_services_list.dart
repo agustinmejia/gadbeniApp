@@ -44,18 +44,18 @@ class CardServicesList extends StatelessWidget {
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
                 "assets/img/services/services_list/beca.jpg"),
           ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ServiceLegalStatus()));
-            },
-            child: CardHorizontal(
-                "Personería jurídica",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                "assets/img/services/services_list/personeria.jpg"),
-          )
+          // InkWell(
+          //   onTap: () {
+          //     Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //             builder: (context) => ServiceLegalStatus()));
+          //   },
+          //   child: CardHorizontal(
+          //       "Personería jurídica",
+          //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+          //       "assets/img/services/services_list/personeria.jpg"),
+          // )
         ],
       ),
     );

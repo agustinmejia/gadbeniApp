@@ -20,7 +20,7 @@ class _CardBlogListState extends State<CardBlogList> {
   bool isLoading = true;
 
   Future getPosts() async {
-    var baseUrl = "$_URL/api/posts";
+    var baseUrl = "$_URL/api/posts?limit=5";
     http.Response response = await http.get(Uri.parse(baseUrl));
     if (response.statusCode == 200) {
       var jsonData = json.decode(response.body);
