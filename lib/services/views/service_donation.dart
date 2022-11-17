@@ -148,6 +148,7 @@ class _FormServiceDonationState extends State<FormServiceDonation> {
                             color: Colors.white,
                             child: TextFormField(
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.person),
                                 hintText: 'Juan Perez Perez',
                                 labelText: 'Nombre completo *',
@@ -169,6 +170,7 @@ class _FormServiceDonationState extends State<FormServiceDonation> {
                             color: Colors.white,
                             child: TextFormField(
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.web),
                                 hintText: '12345678',
                                 labelText: 'Cédula de Identidad *',
@@ -191,6 +193,7 @@ class _FormServiceDonationState extends State<FormServiceDonation> {
                             child: TextFormField(
                               keyboardType: TextInputType.phone,
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.phone_android_outlined),
                                 hintText: '75199157',
                                 labelText: 'N° de celular *',
@@ -214,6 +217,7 @@ class _FormServiceDonationState extends State<FormServiceDonation> {
                             child: DropdownButtonFormField(
                               hint: Text('Seleccione el tipo de donación'),
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.article_outlined),
                                 labelText: 'Tipo de donación',
                               ),
@@ -245,6 +249,7 @@ class _FormServiceDonationState extends State<FormServiceDonation> {
                               keyboardType: TextInputType.multiline,
                               maxLines: 3,
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.edit_note_sharp),
                                 // hintText: '',
                                 labelText: 'Cuéntanos acerca de tu necesidad *',

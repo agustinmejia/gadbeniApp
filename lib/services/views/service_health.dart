@@ -147,6 +147,7 @@ class _FormServiceHealthState extends State<FormServiceHealth> {
                             color: Colors.white,
                             child: TextFormField(
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.person),
                                 hintText: 'Juan Perez Perez',
                                 labelText: 'Nombre completo *',
@@ -168,6 +169,7 @@ class _FormServiceHealthState extends State<FormServiceHealth> {
                             color: Colors.white,
                             child: TextFormField(
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.web),
                                 hintText: '12345678',
                                 labelText: 'Cédula de Identidad *',
@@ -190,6 +192,7 @@ class _FormServiceHealthState extends State<FormServiceHealth> {
                             child: TextFormField(
                               keyboardType: TextInputType.phone,
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.phone_android_outlined),
                                 hintText: '75199157',
                                 labelText: 'N° de celular *',
@@ -213,6 +216,7 @@ class _FormServiceHealthState extends State<FormServiceHealth> {
                             child: DropdownButtonFormField(
                               hint: Text('Seleccione al médico'),
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.medical_services_outlined),
                                 labelText: 'Médico',
                               ),
@@ -245,6 +249,7 @@ class _FormServiceHealthState extends State<FormServiceHealth> {
                               keyboardType: TextInputType.multiline,
                               maxLines: 3,
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.edit_note_sharp),
                                 hintText: 'Dolor de...',
                                 labelText: 'Motivo de la consulta *',

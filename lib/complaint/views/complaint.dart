@@ -135,6 +135,7 @@ class _FormComplaint extends State<FormComplaint> {
                             color: Colors.white,
                             child: TextFormField(
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.person),
                                 hintText: 'Juan Perez Perez',
                                 labelText: 'Su nombre completo *',
@@ -156,6 +157,7 @@ class _FormComplaint extends State<FormComplaint> {
                             color: Colors.white,
                             child: TextFormField(
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.web),
                                 hintText: '12345678',
                                 labelText: 'Su cédula de Identidad *',
@@ -178,6 +180,7 @@ class _FormComplaint extends State<FormComplaint> {
                             child: TextFormField(
                               keyboardType: TextInputType.phone,
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.phone_android_outlined),
                                 hintText: '75199157',
                                 labelText: 'Su N° de celular *',
@@ -201,6 +204,7 @@ class _FormComplaint extends State<FormComplaint> {
                               keyboardType: TextInputType.multiline,
                               maxLines: 2,
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.people_alt),
                                 // hintText: 'Persona o entidad denunciada',
                                 labelText: 'Persona o entidad denunciada *',
@@ -224,6 +228,7 @@ class _FormComplaint extends State<FormComplaint> {
                               keyboardType: TextInputType.multiline,
                               maxLines: 3,
                               decoration: const InputDecoration(
+                                border: const OutlineInputBorder(),
                                 icon: Icon(Icons.edit_note_sharp),
                                 // hintText: 'Dolor de...',
                                 labelText: 'Motivo de la denuncia *',

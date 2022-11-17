@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 // Screens
 import 'home/views/home.dart';
+import 'package:gadbeni/services/views/service_conferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +36,23 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       debugShowCheckedModeBanner: false,
+      // initialRoute: '/',
+      // routes: <String, WidgetBuilder>{
+      //   '/': (BuildContext context) => Home(),
+      //   '/meet': (BuildContext context) => ServiceConferences('')
+      // },
       home: Home(),
+      onGenerateRoute: (settings) {
+        String args = settings.name.toString();
+        if (args.contains('/meet')) {
+          return MaterialPageRoute(
+              builder: (context) => ServiceConferences(
+                  'https://conferencias.beni.gob.bo/meet/testing-gadbeni'));
+        }
+
+        assert(false, 'Need to implement ${settings.name}');
+        return null;
+      },
     );
   }
 }
