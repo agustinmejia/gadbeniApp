@@ -9,7 +9,7 @@ import 'package:gadbeni/culture/views/culture_details.dart';
 // Widgets
 import 'package:gadbeni/widgets/card_horizontal_network.dart';
 
-const _URL = 'http://10.0.2.2:8000';
+const _URL = 'https://mamore.beni.gob.bo';
 
 class CardCultureList extends StatefulWidget {
   @override
