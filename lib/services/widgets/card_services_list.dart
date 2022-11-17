@@ -31,7 +31,7 @@ class CardServicesList extends StatelessWidget {
             },
             child: CardHorizontal(
                 "Solicitar donación",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                "Puedes solicitar donaciones de medicamentos, ropa, viveres, etc.",
                 "assets/img/services/services_list/donacion.jpg"),
           ),
           InkWell(
@@ -41,7 +41,7 @@ class CardServicesList extends StatelessWidget {
             },
             child: CardHorizontal(
                 "Optar por beca",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                "A través de este formulario puedes optar por las diferentes becas que tiene para ofrecer la gobernación del Beni en convenio de diferentes instituciones.",
                 "assets/img/services/services_list/beca.jpg"),
           ),
           // InkWell(

@@ -8,7 +8,7 @@ import 'package:gadbeni/widgets/card_horizontal_network.dart';
 
 import 'package:gadbeni/blog/views/blog_details.dart';
 
-const _URL = 'http://10.0.2.2:8000';
+const _URL = 'https://mamore.beni.gob.bo';
 
 class CardBlogList extends StatefulWidget {
   @override
@@ -48,7 +48,7 @@ class _CardBlogListState extends State<CardBlogList> {
             height: 20,
           ),
           const Text(
-            "Noticias",
+            "Noticias destacadas",
             style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w500,

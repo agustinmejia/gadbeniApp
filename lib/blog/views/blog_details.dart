@@ -8,7 +8,7 @@ import 'package:gadbeni/widgets/description_view.dart';
 import 'package:gadbeni/widgets/viewer_photos.dart';
 import 'package:gadbeni/widgets/thumbnail_network.dart';
 
-const _URL = 'http://10.0.2.2:8000';
+const _URL = 'https://mamore.beni.gob.bo';
 
 class BlogDetails extends StatelessWidget {
   String title = "";
