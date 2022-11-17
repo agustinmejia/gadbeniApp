@@ -52,7 +52,7 @@ class Home extends StatelessWidget {
                     ),
                   ),
                   CardServicesList(),
-                  CardBlogList(),
+                  // CardBlogList(),
                   CardPlacesList("Lugares Turístico"),
                   BannerAdvertising()
                 ],

@@ -40,6 +40,7 @@ dependencies:
   google_maps_flutter: ^2.2.1
   photo_view: ^0.14.0
   http: ^0.13.5
+  jitsi_meet_wrapper: ^0.0.5
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +80,7 @@ flutter:
     - assets/img/services/services_list/donacion.jpg
     - assets/img/services/services_list/personeria.jpg
     - assets/img/services/services_list/salud.jpg
+    - assets/img/services/services_list/videollamada.jpg
     #####################
     - assets/img/culture/judas.jpg
     - assets/img/culture/macheteros.jpg

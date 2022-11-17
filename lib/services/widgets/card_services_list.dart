@@ -3,6 +3,7 @@ import 'package:gadbeni/services/views/service_donation.dart';
 import 'package:gadbeni/services/views/service_grant.dart';
 import 'package:gadbeni/services/views/service_health.dart';
 import 'package:gadbeni/services/views/service_legal_status.dart';
+import 'package:gadbeni/services/views/service_conference.dart';
 
 // Widgets
 import 'package:gadbeni/widgets/card_horizontal.dart';
@@ -55,7 +56,17 @@ class CardServicesList extends StatelessWidget {
           //       "Personería jurídica",
           //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
           //       "assets/img/services/services_list/personeria.jpg"),
-          // )
+          // ),
+          InkWell(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ServiceConference()));
+            },
+            child: CardHorizontal(
+                "VideoCongerencias",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                "assets/img/services/services_list/videollamada.jpg"),
+          )
         ],
       ),
     );
