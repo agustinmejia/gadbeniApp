@@ -36,22 +36,21 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       debugShowCheckedModeBanner: false,
+      home: Home(),
       // initialRoute: '/',
       // routes: <String, WidgetBuilder>{
       //   '/': (BuildContext context) => Home(),
       //   '/meet': (BuildContext context) => ServiceConferences('')
       // },
-      home: Home(),
       onGenerateRoute: (settings) {
         String args = settings.name.toString();
-        if (args.contains('/meet')) {
+        if (args.contains('/')) {
           return MaterialPageRoute(
-              builder: (context) => ServiceConferences(
-                  'https://conferencias.beni.gob.bo/meet/testing-gadbeni'));
+              builder: (context) =>
+                  ServiceConferences('https://conferencias.beni.gob.bo$args'));
+        } else {
+          return MaterialPageRoute(builder: (context) => Home());
         }
-
-        assert(false, 'Need to implement ${settings.name}');
-        return null;
       },
     );
   }

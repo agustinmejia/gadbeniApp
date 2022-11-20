@@ -28,9 +28,9 @@ class DescriptionView extends StatelessWidget {
                   width: (width! - 20),
                   child: Text(
                     title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: false,
+                    // maxLines: 3,
+                    // overflow: TextOverflow.ellipsis,
+                    // softWrap: false,
                     style: const TextStyle(
                       decoration: TextDecoration.none,
                       fontFamily: "Montserrat",
@@ -48,11 +48,12 @@ class DescriptionView extends StatelessWidget {
                 child: Text(
                   description,
                   style: const TextStyle(
-                      decoration: TextDecoration.none,
-                      fontFamily: "Montserrat",
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.normal,
-                      color: Color(0xFF56575a)),
+                    decoration: TextDecoration.none,
+                    fontFamily: "Montserrat",
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.normal,
+                    color: Color(0xFF56575a),
+                  ),
                 ),
               )
             ],

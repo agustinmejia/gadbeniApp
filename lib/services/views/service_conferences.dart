@@ -30,7 +30,7 @@ class _ServiceConferencesState extends State<ServiceConferences> {
     });
     return Scaffold(
         appBar: AppBar(
-          title: Text("Lista de servicios"),
+          title: Text("Video conferencia"),
         ),
         body: SingleChildScrollView(
           child: Padding(
